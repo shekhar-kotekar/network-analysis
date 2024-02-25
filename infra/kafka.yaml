@@ -31,6 +31,13 @@ spec:
       labels:
         app: kafka-app
     spec:
+      initContainers:
+      - name: format-kafka
+        image: doughgle/kafka-kraft
+        command: ["/opt/kafka/bin/kafka-storage.sh", "format", "-t", "xtzWWN4bTjitpL3kfd9s5g", "--config", "/opt/kafka/config/kraft/server.properties"]
+        volumeMounts:
+        - name: data
+          mountPath: /mnt/kafka
       containers:
       - name: kafka-container
         image: doughgle/kafka-kraft
@@ -47,7 +54,7 @@ spec:
         - name: SHARE_DIR
           value: /mnt/kafka
         - name: CLUSTER_ID
-          value: kb-EE02EB6C-B095-45ED-8A7B-0EE7E36143C5
+          value: xtzWWN4bTjitpL3kfd9s5g
         - name: DEFAULT_REPLICATION_FACTOR
           value: "3"
         - name: DEFAULT_MIN_INSYNC_REPLICAS
@@ -62,4 +69,4 @@ spec:
       accessModes: ["ReadWriteOnce"]
       resources:
         requests:
-          storage: 1Gi
+          storage: 128Mi
