@@ -6,6 +6,9 @@
 
 `kubectl get pods -o wide --namespace kafka`
 
+## check volume claims
+`kubectl get pvc --all-namespaces`
+
 ### Kafka console producer
 ```
 kubectl exec --stdin --tty pod/kafka-0 --namespace kafka -- /bin/bash
@@ -20,6 +23,7 @@ cd /opt/kafka/bin
 # start a producer
 ./kafka-console-producer.sh --topic test-topic --bootstrap-server localhost:9092
 ```
+
 ### Kafka console consumer
 ```
 kubectl exec --stdin --tty pod/kafka-2 --namespace kafka -- /bin/bash
@@ -35,3 +39,4 @@ cd /opt/kafka/bin
 ## References:
 - https://kafka.apache.org/quickstart
 - https://www.mitrais.com/news-updates/deploying-a-multi-broker-kafka-cluster-in-kubernetes/
+- https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/
