@@ -6,6 +6,7 @@ use tracing::info;
 
 fn main() {
     tracing_subscriber::fmt().with_thread_names(true).init();
+    //TODO: read network interface name from config
     let network_interface_name = "en0";
     let interface = datalink::interfaces()
         .into_iter()
@@ -14,6 +15,7 @@ fn main() {
         .expect("Failed to get interface");
 
     info!("Capturing packets for '{:?}' interface", interface.name);
+    //TODO: Give interface name to the thread
     let handle = thread::spawn(move || {
         capture_packets(interface.clone());
     });
