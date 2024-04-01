@@ -2,11 +2,12 @@
 - Create k8s dashboard first
 - Create Kafka cluster using command: `k apply -f kafka.yaml`
 
-## Check if Kafka cluster is running
+## Some useful commands
+### Check if Kafka cluster is running
 
 `kubectl get pods -o wide --namespace kafka`
 
-## check volume claims
+### check volume claims
 `kubectl get pvc --all-namespaces`
 
 ### Kafka console producer
@@ -33,7 +34,7 @@ cd /opt/kafka/bin
 ./kafka-console-consumer.sh --topic test-topic --from-beginning --bootstrap-server localhost:9092
 ```
 
-## To destroy the Kafka cluster
+### To destroy the Kafka cluster
 - `k delete -f kafka.yaml`
 
 ## References:
